@@ -1,10 +1,10 @@
 jest.dontMock('../');
 
 describe('createStubbedContextcomponent', function() {
-  var React, ReactDOM, TestUtils, TestComponent, createStubbedContextComponent;
+  var CompareVersions, React, ReactDOM, TestUtils, TestComponent, createStubbedContextComponent;
 
   function getInternalContext(component) {
-    if (React.version.split('.')[1] > 13) {
+    if (CompareVersions(React.version, '0.13.3')) {
       return component._owner._renderedComponent._context
     } else {
       return component._context
@@ -12,6 +12,7 @@ describe('createStubbedContextcomponent', function() {
   }
 
   beforeEach(function() {
+    CompareVersions = require.requireActual('compare-versions');
     React = require.requireActual('react');
     ReactDOM = require.requireActual('react-dom');
     TestUtils = require.requireActual('react-addons-test-utils');
@@ -93,4 +94,3 @@ describe('createStubbedContextcomponent', function() {
     expect(ReactDOM.findDOMNode(stubbedContextComponentElement).innerHTML).toEqual('Fearless');
   })
 });
-

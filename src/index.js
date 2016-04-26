@@ -5,11 +5,11 @@ function stubContext(BaseComponent, context) {
 
   var _contextTypes = {}, _context = context;
 
-  try {
+  if (_context !== null && typeof _context === 'object') {
     Object.keys(_context).forEach(function(key) {
       _contextTypes[key] = React.PropTypes.any;
     });
-  } catch (err) {
+  } else {
     throw new TypeError('createdStubbedContextComponent requires an object');
   }
 
@@ -19,7 +19,7 @@ function stubContext(BaseComponent, context) {
     getChildContext() { return _context; },
     contextTypes: _contextTypes,
 
-    render() { 
+    render() {
       return React.Children.only(this.props.children);
     }
   });
