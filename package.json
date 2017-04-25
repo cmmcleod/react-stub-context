@@ -1,6 +1,6 @@
 {
   "name": "react-stub-context",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Stub context for a component, to be used for testing purposes.",
   "main": "dist/index.js",
   "keywords": [
@@ -42,10 +42,12 @@
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "compare-versions": "^2.0.1",
+    "create-react-class": "^15.5.0",
     "jest-cli": "^11.0.2",
-    "react-addons-test-utils": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "webpack": "^1.13.0"
+    "react-addons-test-utils": "^15.5.0",
+    "react-dom": "^15.5.0",
+    "webpack": "^1.13.0",
+    "prop-types": "^15.5.0"
   },
   "peerDependencies": {
     "react": "^0.13.0 || ^0.14.0 || ^15.0.0"

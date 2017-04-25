@@ -1,4 +1,6 @@
 var React = require('react');
+var PropTypes = require('prop-types');
+var createReactClass = require('create-react-class');
 
 function stubContext(BaseComponent, context) {
   if(typeof context === 'undefined' || context === null) context = {};
@@ -7,13 +9,13 @@ function stubContext(BaseComponent, context) {
 
   if (_context !== null && typeof _context === 'object') {
     Object.keys(_context).forEach(function(key) {
-      _contextTypes[key] = React.PropTypes.any;
+      _contextTypes[key] = PropTypes.any;
     });
   } else {
     throw new TypeError('createdStubbedContextComponent requires an object');
   }
 
-  var StubbedContextParent = React.createClass({
+  var StubbedContextParent = createReactClass({
     displayName: 'StubbedContextParent',
     childContextTypes: _contextTypes,
     getChildContext() { return _context; },
@@ -24,7 +26,7 @@ function stubContext(BaseComponent, context) {
     }
   });
 
-  var StubbedContextHandler = React.createClass({
+  var StubbedContextHandler = createReactClass({
     displayName: 'StubbedContextHandler',
     childContextTypes: _contextTypes,
     getChildContext() { return _context; },
