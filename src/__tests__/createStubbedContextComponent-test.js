@@ -1,4 +1,5 @@
-jest.dontMock('../');
+var createReactClass = require('create-react-class');
+var PropTypes = require('prop-types');
 
 describe('createStubbedContextcomponent', function() {
   var CompareVersions, React, ReactDOM, TestUtils, TestComponent, createStubbedContextComponent;
@@ -15,8 +16,8 @@ describe('createStubbedContextcomponent', function() {
     CompareVersions = require.requireActual('compare-versions');
     React = require.requireActual('react');
     ReactDOM = require.requireActual('react-dom');
-    TestUtils = require.requireActual('react-addons-test-utils');
-    TestComponent = React.createClass({ render: function() { return null; }});
+    TestUtils = require.requireActual('react-dom/test-utils');
+    TestComponent = createReactClass({ render: function() { return null; }});
     createStubbedContextComponent = require('../');
   })
 
@@ -47,8 +48,8 @@ describe('createStubbedContextcomponent', function() {
   });
 
   it('Merges with existing context types on component', function() {
-    TestComponent = React.createClass({
-      contextTypes: { bad: React.PropTypes.string },
+    TestComponent = createReactClass({
+      contextTypes: { bad: PropTypes.string },
       render: function() { return null }
     });
 
@@ -68,7 +69,7 @@ describe('createStubbedContextcomponent', function() {
   });
 
   it('Hooks up context on target component correctly', function() {
-    TestComponent = React.createClass({
+    TestComponent = createReactClass({
       render: function() {
         return <span>{this.context.taylor}</span>;
       }
@@ -82,7 +83,7 @@ describe('createStubbedContextcomponent', function() {
   });
 
   it('Passes through props to target component correctly', function() {
-    TestComponent = React.createClass({
+    TestComponent = createReactClass({
       render: function() {
         return <span>{this.props.red}</span>;
       }
